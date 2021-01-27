@@ -6,9 +6,34 @@ import pyEX as p
 
 # Create your views here.
 def index(request):
-  response = requests.get(f'https://sandbox.iexapis.com/stable/stock/AAPL/quote?token={CLOUD_API_KEY}')
+  symbol = 'AAPL'
+  response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={CLOUD_API_KEY}')
   data = response.json()
-  return render(request, 'index.html', {
-    'symbol': data['symbol'],
-    'latestPrice': data['latestPrice']
-  })
+
+  if request.method == 'GET':
+    ticker = request.GET['ticker_search']
+    symbol = ticker.upper()
+    response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={CLOUD_API_KEY}')
+    data = response.json()
+    print(data)
+    #return render(request, 'index.html', {
+    #'symbol': data['symbol'],
+    #'latestPrice': data['latestPrice']
+    #})
+
+  else:
+    return HttpResponse('index')
+
+  return render(request, 'index.html')
+
+#  def get_queryset(self):
+#    search = requests.GET['search']
+#    symbol = search.upper()
+#    if 'search' in request.GET:
+#      return render(request, 'index.html', {
+#        'symbol': data['symbol'],
+#        'latestPrice': data['latestPrice']
+#        })
+#    else:
+#      return render(request, 'index.html')
+#    return render(request, 'index.html')
