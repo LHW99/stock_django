@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
 from keys import *
 import requests
 import pyEX as p
@@ -15,11 +16,11 @@ def index(request):
     symbol = ticker.upper()
     response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={CLOUD_API_KEY}')
     data = response.json()
-    print(data)
-    #return render(request, 'index.html', {
-    #'symbol': data['symbol'],
-    #'latestPrice': data['latestPrice']
-    #})
+    
+    return render(request, 'index.html', {
+    'symbol': data['symbol'],
+    'latestPrice': data['latestPrice']
+    })
 
   else:
     return HttpResponse('index')
