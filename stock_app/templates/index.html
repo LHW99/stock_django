@@ -15,8 +15,13 @@
   </form>
     
 
-  Testing the following: <strong>{{ symbol }}</strong> at price of <strong>${{ latestPrice }}</strong>
-
-
+  <p>Testing the following: <strong>{{ companyName }}</strong>(<strong>{{ symbol }}</strong>) at price of <strong>${{ latestPrice }}</strong></p>
+  <p>P/E Ratio: {{ peRatio }}</p>
+  <p>Market Cap: {{ marketCap }}</p>
+  <p>52-Week High: {{ week52High }}</p>
+  <p>52-Week Low: {{ week52Low }}</p>
+  <p>P/B Ratio: {{ priceToBook }}</p>
+  <p>P/S Ratio: {{ priceToSales }}</p>
+  
 
 {% endblock %}
