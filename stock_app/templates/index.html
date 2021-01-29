@@ -5,6 +5,8 @@
 {% block content %}
   <h1>Stocks</h1>
 
+  {{ error_message }}
+
   <form method='GET' action=''>
     {% csrf_token %}
     <label for='ticker_search'>Search for NASDAQ ticker:</label>

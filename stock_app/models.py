@@ -5,6 +5,8 @@ from datetime import date
 class Ticker(models.Model):
   tick = models.CharField(max_length = 6)
 
+  
+
   def get_absolute_url(self):
     return reverse("ticker-detail", kwargs={"pk": self.pk})
 

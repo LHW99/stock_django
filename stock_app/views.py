@@ -5,36 +5,25 @@ import requests
 import pyEX as p
 #api_call = p.Client(api_token=CLOUD_API_KEY, version='sandbox')
 
-# Create your views here.
 def index(request):
-  symbol = 'AAPL'
-  response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={CLOUD_API_KEY}')
-  data = response.json()
-
   if request.method == 'GET':
-    ticker = request.GET['ticker_search']
-    symbol = ticker.upper()
-    response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={CLOUD_API_KEY}')
-    data = response.json()
-    
-    return render(request, 'index.html', {
-    'symbol': data['symbol'],
-    'latestPrice': data['latestPrice']
-    })
+    try:
+      ticker = request.GET['ticker_search']
+      symbol = ticker.upper()
+      response = requests.get(f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol}&types=quote,news,chart&token={CLOUD_API_KEY}')
+      #response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/batch?types=quote&token={CLOUD_API_KEY}')
+      #response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={CLOUD_API_KEY}')
+      data = response.json()
 
-  else:
+      return render(request, 'index.html', {
+      'symbol': symbol,
+      'latestPrice': data[symbol]['quote']['latestPrice'],
+      'error_message': ''
+      })
+    except:
+      print('try again')
+  
+  else: 
     return HttpResponse('index')
 
   return render(request, 'index.html')
-
-#  def get_queryset(self):
-#    search = requests.GET['search']
-#    symbol = search.upper()
-#    if 'search' in request.GET:
-#      return render(request, 'index.html', {
-#        'symbol': data['symbol'],
-#        'latestPrice': data['latestPrice']
-#        })
-#    else:
-#      return render(request, 'index.html')
-#    return render(request, 'index.html')
