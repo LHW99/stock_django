@@ -3,7 +3,6 @@
 {% block title %} <title>Stocks</title> {% endblock %}
 
 {% block content %}
-  <h1>Stocks</h1>
 
   {{ error_message }}
 
@@ -14,10 +13,9 @@
     <button type='submit'>Search</button>
   </form>
     
-
-  <p>Testing the following: <strong>{{ companyName }}</strong>(<strong>{{ symbol }}</strong>) at price of <strong>${{ latestPrice }}</strong></p>
+  <p>Testing the following: <strong>{{ companyName }}</strong> <strong>{{ symbol }}</strong> at price of <strong>{{ latestPrice }}</strong></p>
   <p>P/E Ratio: {{ peRatio }}</p>
-  <p>Market Cap: {{ marketCap }}</p>
+  <p>Market Cap (Billion): {{ marketCap|floatformat:2 }}</p>
   <p>52-Week High: {{ week52High }}</p>
   <p>52-Week Low: {{ week52Low }}</p>
   <p>P/B Ratio: {{ priceToBook }}</p>

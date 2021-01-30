@@ -6,10 +6,6 @@ import pyEX as p
 #api_call = p.Client(api_token=CLOUD_API_KEY, version='sandbox')
 
 def index(request):
-  symbol = 'AAPL'
-  response = requests.get(f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol}&types=quote,advanced-stats&token={CLOUD_API_KEY}')
-  data = response.json()
-
   if request.method == 'GET':
     try:
       ticker = request.GET['ticker_search']
@@ -19,10 +15,10 @@ def index(request):
 
       return render(request, 'index.html', {
       'companyName': data[symbol]['quote']['companyName'],
-      'symbol': symbol,
-      'latestPrice': data[symbol]['quote']['latestPrice'],
+      'symbol': f'({symbol})',
+      'latestPrice': f"${data[symbol]['quote']['latestPrice']}",
       'peRatio': data[symbol]['quote']['peRatio'],
-      'marketCap': data[symbol]['quote']['marketCap'],
+      'marketCap': f"{data[symbol]['quote']['marketCap']/1000000000}",
       'week52High': data[symbol]['quote']['week52High'],
       'week52Low': data[symbol]['quote']['week52Low'],
       'priceToBook': data[symbol]['advanced-stats']['priceToBook'],
@@ -36,3 +32,6 @@ def index(request):
     return HttpResponse('index')
 
   return render(request, 'index.html')
+
+def top50(request):
+  return render(request, 'top50.html')

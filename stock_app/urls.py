@@ -8,5 +8,6 @@ from django.conf.urls.static import static
 
 # home page
 urlpatterns = [
-  path('', views.index, name='index')
+  path('', views.index, name='index'),
+  path('top50/', views.top50, name='top50'),
 ]
