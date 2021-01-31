@@ -1,3 +1,7 @@
+import pandas as pd
+import requests
+from keys import *
+
 stocks = pd.read_csv('sp_500_stocks.csv')
 
 def chunks(lst, n):
@@ -12,22 +16,15 @@ for i in range(0, len(symbol_groups)):
 rv_columns = [
   'Ticker',
   'Price',
-  'Shares to Buy',
   'P/E Ratio',
-  'P/E Percentile',
   'Price to Book Ratio',
-  'PB Percentile',
   'Price to Sales Ratio',
-  'PS Percentile',
-  'EV/EBITDA',
-  'EV/EBITDA Percentile',
-  'EV/GP',
-  'EV/GP Percentile',
-  'RV Score',
 ]
 
+rv_dataframe = pd.DataFrame(columns = rv_columns)
+
 for symbol_string in symbol_strings:
-  batch_api_call = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={IEX_CLOUD_API_TOKEN}'
+  batch_api_call = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={CLOUD_API_KEY}'
   data = requests.get(batch_api_call).json()
   for symbol in symbol_string.split(','):
       rv_dataframe = rv_dataframe.append(
@@ -35,18 +32,9 @@ for symbol_string in symbol_strings:
         [
           symbol,
           data[symbol]['quote']['latestPrice'],
-          0.0,
           data[symbol]['quote']['peRatio'],
-          0.0,
           data[symbol]['advanced-stats']['priceToBook'],
-          0.0,
           data[symbol]['advanced-stats']['priceToSales'],
-          0.0,
-          ev_to_ebitda,
-          0.0,
-          ev_to_gp,
-          0.0,
-          0.0,
         ],
         index = rv_columns
       ),

@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from keys import *
 import requests
-import pyEX as p
-#api_call = p.Client(api_token=CLOUD_API_KEY, version='sandbox')
+from stock_dataframe import rv_dataframe
 
 def index(request):
   if request.method == 'GET':
@@ -25,7 +24,7 @@ def index(request):
       'priceToSales': data[symbol]['advanced-stats']['priceToSales'],
       #'error_message': ''
       })
-    except:
+    except ValueError:
       print('try again')
   
   else: 
@@ -34,4 +33,8 @@ def index(request):
   return render(request, 'index.html')
 
 def top50(request):
+  print(rv_dataframe)
   return render(request, 'top50.html')
+
+def watchlist(request):
+  return render(request, 'watchlist.html')
