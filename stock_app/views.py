@@ -22,10 +22,9 @@ def index(request):
       'week52Low': data[symbol]['quote']['week52Low'],
       'priceToBook': data[symbol]['advanced-stats']['priceToBook'],
       'priceToSales': data[symbol]['advanced-stats']['priceToSales'],
-      #'error_message': ''
       })
-    except ValueError:
-      print('try again')
+    except:
+      return render(request, 'index.html')
   
   else: 
     return HttpResponse('index')
@@ -33,8 +32,10 @@ def index(request):
   return render(request, 'index.html')
 
 def top50(request):
-  print(rv_dataframe)
-  return render(request, 'top50.html')
+  df = rv_dataframe
+  return render(request, 'top50.html',{
+    'df': df
+  })
 
 def watchlist(request):
   return render(request, 'watchlist.html')

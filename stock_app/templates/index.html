@@ -4,9 +4,8 @@
 
 {% block content %}
 
-  {{ error_message }}
-
   <form method='GET' action=''>
+    <p>{{ error_message }}</p>
     {% csrf_token %}
     <label for='ticker_search'>Search for NASDAQ ticker:</label>
     <input type='search' name='ticker_search'>
