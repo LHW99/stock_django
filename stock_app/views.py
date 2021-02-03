@@ -32,10 +32,9 @@ def index(request):
   return render(request, 'index.html')
 
 def top50(request):
-  df = rv_dataframe
-  return render(request, 'top50.html',{
-    'df': df
-  })
+  df = rv_dataframe.to_html()
+  
+  return render(request, 'top50.html', {'df': df})
 
 def watchlist(request):
   return render(request, 'watchlist.html')
