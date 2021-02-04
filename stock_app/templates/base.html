@@ -14,7 +14,11 @@
 <body>
   <div class='col-sm-10'>
     <h1>Stocks</h1>
-    <a href='{% url 'index' %}'>Home</a> - <a href='{% url 'top50' %}'>Top 50 (Gains)</a> - <a href='{% url 'watchlist' %}'>Watchlist</a>
+    <a href='{% url 'index' %}'>Home</a> 
+    - <a href='{% url 'all' %}'>S&P 500</a> 
+    - <a href='{% url 'top50gain' %}'>Top 50 (Gains)</a> 
+    - <a href='{% url 'top50loss' %}'>Top 50 (Loss)</a> 
+    - <a href='{% url 'top50pe' %}'>Top 50 (P/E Ratio)</a> 
     {% block content %}{% endblock %}
   </div>
 </body>

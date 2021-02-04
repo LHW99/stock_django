@@ -31,10 +31,40 @@ def index(request):
 
   return render(request, 'index.html')
 
-def top50(request):
-  df = rv_dataframe.to_html()
-  
-  return render(request, 'top50.html', {'df': df})
+def top50gain(request):
+  df = rv_dataframe
 
-def watchlist(request):
-  return render(request, 'watchlist.html')
+  df.sort_values('Price', ascending = False, inplace = True)
+  df = df[:50]
+  df.reset_index(drop = True, inplace = True)
+
+  df = df.to_html()
+
+  return render(request, 'top50gain.html', {'df': df})
+
+def top50loss(request):
+  df = rv_dataframe
+
+  df.sort_values('Price', ascending = False, inplace = True)
+  df = df[:50]
+  df.reset_index(drop = True, inplace = True)
+
+  df = df.to_html()
+
+  return render(request, 'top50loss.html', {'df': df})
+
+def top50pe(request):
+  df = rv_dataframe
+
+  df.sort_values('Price', ascending = False, inplace = True)
+  df = df[:50]
+  df.reset_index(drop = True, inplace = True)
+
+  df = df.to_html()
+
+  return render(request, 'top50pe.html', {'df': df})
+
+def all(request):
+  df = rv_dataframe.to_html()
+
+  return render(request, 'all.html', {'df': df})
