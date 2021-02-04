@@ -56,7 +56,7 @@ def top50loss(request):
 def top50pe(request):
   df = rv_dataframe
 
-  df.sort_values('Price', ascending = False, inplace = True)
+  df.sort_values('P/E Ratio', ascending = False, inplace = True)
   df = df[:50]
   df.reset_index(drop = True, inplace = True)
 

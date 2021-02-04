@@ -19,12 +19,18 @@ rv_columns = [
   'P/E Ratio',
   'Price to Book Ratio',
   'Price to Sales Ratio',
+  'Percentage Change (1-Month)',
+  'Percentage Change (3-Month)',
+  'Percentage Change (6-Month)',
+  'Percentage Change (1-Year)',
+  'Percentage Change (5-Years)',
+  'Percentage Change (Max)',
 ]
 
 rv_dataframe = pd.DataFrame(columns = rv_columns)
 
 for symbol_string in symbol_strings:
-  batch_api_call = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={CLOUD_API_KEY}'
+  batch_api_call = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,stats,advanced-stats&token={CLOUD_API_KEY}'
   data = requests.get(batch_api_call).json()
   for symbol in symbol_string.split(','):
       rv_dataframe = rv_dataframe.append(
@@ -35,6 +41,12 @@ for symbol_string in symbol_strings:
           data[symbol]['quote']['peRatio'],
           data[symbol]['advanced-stats']['priceToBook'],
           data[symbol]['advanced-stats']['priceToSales'],
+          data[symbol]['stats']['month1ChangePercent'],
+          data[symbol]['stats']['month3ChangePercent'],
+          data[symbol]['stats']['month6ChangePercent'],
+          data[symbol]['stats']['year1ChangePercent'],          
+          data[symbol]['stats']['year5ChangePercent'],
+          data[symbol]['stats']['maxChangePercent'],
         ],
         index = rv_columns
       ),
