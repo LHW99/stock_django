@@ -52,3 +52,15 @@ for symbol_string in symbol_strings:
       ),
       ignore_index = True
     )
+
+times = [
+  'Percentage Change (1-Month)',
+  'Percentage Change (3-Month)',
+  'Percentage Change (6-Month)',
+  'Percentage Change (1-Year)',
+  'Percentage Change (5-Years)',
+  'Percentage Change (Max)',
+]
+
+for time in times:
+  rv_dataframe[f'{time}'] = rv_dataframe[f'{time}']*100
