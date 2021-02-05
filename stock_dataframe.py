@@ -20,11 +20,10 @@ rv_columns = [
   'Price to Book Ratio',
   'Price to Sales Ratio',
   'Percentage Change (1-Month)',
-  'Percentage Change (3-Month)',
-  'Percentage Change (6-Month)',
+  'Percentage Change (3-Months)',
+  'Percentage Change (6-Months)',
   'Percentage Change (1-Year)',
   'Percentage Change (5-Years)',
-  'Percentage Change (Max)',
 ]
 
 rv_dataframe = pd.DataFrame(columns = rv_columns)
@@ -46,7 +45,6 @@ for symbol_string in symbol_strings:
           data[symbol]['stats']['month6ChangePercent'],
           data[symbol]['stats']['year1ChangePercent'],          
           data[symbol]['stats']['year5ChangePercent'],
-          data[symbol]['stats']['maxChangePercent'],
         ],
         index = rv_columns
       ),
@@ -55,11 +53,10 @@ for symbol_string in symbol_strings:
 
 times = [
   'Percentage Change (1-Month)',
-  'Percentage Change (3-Month)',
-  'Percentage Change (6-Month)',
+  'Percentage Change (3-Months)',
+  'Percentage Change (6-Months)',
   'Percentage Change (1-Year)',
   'Percentage Change (5-Years)',
-  'Percentage Change (Max)',
 ]
 
 for time in times:
