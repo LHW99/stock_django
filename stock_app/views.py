@@ -39,14 +39,14 @@ def top50gain(request):
       df.sort_values(f"Percentage Change ({time})", ascending = False, inplace = True)
       df = df[:50]
       df.reset_index(drop = True, inplace = True)
-      df = df.to_html()
+      df = df.to_html(index=False)
       return render(request, 'top50gain.html', {'df': df})
     except:
       df = rv_dataframe
       df.sort_values('Percentage Change (5-Years)', ascending = False, inplace = True)
       df = df[:50]
       df.reset_index(drop = True, inplace = True)
-      df = df.to_html()
+      df = df.to_html(index=False)
       return render(request, 'top50gain.html', {'df': df})
 
   return render(request, 'top50gain.html', {'df': df})
@@ -59,14 +59,14 @@ def top50loss(request):
       df.sort_values(f"Percentage Change ({time})", ascending = True, inplace = True)
       df = df[:50]
       df.reset_index(drop = True, inplace = True)
-      df = df.to_html()
+      df = df.to_html(index=False)
       return render(request, 'top50loss.html', {'df': df})
     except:
       df = rv_dataframe
       df.sort_values('Percentage Change (5-Years)', ascending = True, inplace = True)
       df = df[:50]
       df.reset_index(drop = True, inplace = True)
-      df = df.to_html()
+      df = df.to_html(index=False)
       return render(request, 'top50loss.html', {'df': df})
 
   return render(request, 'top50loss.html', {'df': df})
@@ -76,11 +76,11 @@ def top50pe(request):
   df.sort_values('P/E Ratio', ascending = False, inplace = True)
   df = df[:50]
   df.reset_index(drop = True, inplace = True)
-  df = df.to_html()
+  df = df.to_html(index=False)
 
   return render(request, 'top50pe.html', {'df': df})
 
 def all(request):
-  df = rv_dataframe.to_html()
+  df = rv_dataframe.to_html(index=False)
 
   return render(request, 'all.html', {'df': df})
