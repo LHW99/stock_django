@@ -4,6 +4,10 @@
   list-style: none;
 }
 
+.front-page{
+  text-align: center;
+}
+
 .dataframe {
   background: black;
   color: white;

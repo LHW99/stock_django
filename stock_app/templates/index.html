@@ -4,21 +4,30 @@
 
 {% block content %}
 
-  <form method='GET' action=''>
+  <form class='front-page' method='GET' action=''>
     <p>{{ error_message }}</p>
     {% csrf_token %}
     <label for='ticker_search'>Search for NASDAQ ticker:</label>
     <input type='search' name='ticker_search'>
-    <button type='submit'>Search</button>
+    <button type='submit'>Go!</button>
   </form>
-    
-  <p>Testing the following: <strong>{{ companyName }}</strong> <strong>{{ symbol }}</strong> at price of <strong>{{ latestPrice }}</strong></p>
-  <p>P/E Ratio: {{ peRatio }}</p>
-  <p>Market Cap (Billion): {{ marketCap|floatformat:2 }}</p>
-  <p>52-Week High: {{ week52High }}</p>
-  <p>52-Week Low: {{ week52Low }}</p>
-  <p>P/B Ratio: {{ priceToBook }}</p>
-  <p>P/S Ratio: {{ priceToSales }}</p>
-  
-
+    <br>
+  <h1 class='front-page'><strong>{{ companyName }} {{ symbol }}</strong></h1>
+  <h3 class='front-page'><strong>{{ latestPrice }}</strong></h3>
+  <table style='margin-left:auto; margin-right:auto;'>
+    <tr>
+      <td>{{ marketCap }}</td><td></td><td>{{ peRatio }}</td>
+    </tr>
+    <tr> 
+      <td>{{ month1ChangePercent }}</td><td>&ensp;&ensp;&ensp;</td><td>{{ month3ChangePercent }}</td>
+    </tr>
+    <tr>
+      <td>{{ month6ChangePercent }}</td><td>    </td><td>{{ year1ChangePercent }}</td>
+    </tr>
+    <tr>
+      <td>{{ week52High }}</td><td>    </td><td>{{ week52Low }}</td>
+    </tr>
+      <td>{{ priceToBook }}</td><td>    </td><td>{{ priceToSales }}</td>
+    <tr>
+  </table>
 {% endblock %}
