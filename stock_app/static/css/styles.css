@@ -1,16 +1,30 @@
-.sidebar-nav {
-  margin-top: 20px;
-  padding: 0;
-  list-style: none;
+* {
+  color:white;
+  background:black;
+  padding:0;
+  margin:0;
+}
+
+html, body{
+  width:100%;
 }
 
 .front-page{
   text-align: center;
 }
 
-.dataframe {
-  background: black;
+.front-header{
+  text-align: left;
+  padding-left: 10px;
+}
+
+a{
+  text-decoration: none;
   color: white;
+}
+
+a:hover{
+  color:#0dba86;
 }
 
 .dataframe th{
