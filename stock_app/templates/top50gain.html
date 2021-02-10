@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <p>Placeholder for top50 stocks(gain)</p>
     <form method='GET'>
     {% csrf_token %}
       <button type='submit' class='btn btn-primary' name='timer' value='1-Month'>1-Month</button> 
@@ -10,5 +9,7 @@
       <button type='submit' class='btn btn-primary' name='timer' value='1-Year'>1-Year</button>
       <button type='submit' class='btn btn-primary' name='timer' value='5-Years'>5-Years</button>
     </form>
+  <div class='container'>
   {{ df|safe }}
+  </div>
 {% endblock %}

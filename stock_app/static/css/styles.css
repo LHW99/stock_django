@@ -10,8 +10,7 @@ html, body{
 }
 
 .container{
-  display: flex;
-  justify-content:space-between;
+  width:100%;
 }
 
 .front-page{
