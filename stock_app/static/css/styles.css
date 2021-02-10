@@ -9,6 +9,11 @@ html, body{
   width:100%;
 }
 
+.container{
+  display: flex;
+  justify-content:space-between;
+}
+
 .front-page{
   text-align: center;
 }

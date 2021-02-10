@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls.base import reverse
 from keys import *
 import requests
 from stock_dataframe import rv_dataframe
