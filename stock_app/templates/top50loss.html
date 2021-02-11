@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <p>Placeholder for top50 stocks(loss)</p>
-    <form method='GET'>
+    <form method='GET' class='buttons'>
     {% csrf_token %}
+      <label for='timer'>Sort by most losses in past:</label>
       <button type='submit' class='btn btn-primary' name='timer' value='1-Month'>1-Month</button> 
       <button type='submit' class='btn btn-primary' name='timer' value='3-Months'>3-Months</button>
       <button type='submit' class='btn btn-primary' name='timer' value='6-Months'>6-Months</button>

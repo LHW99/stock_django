@@ -1,8 +1,6 @@
 * {
   color:white;
   background:black;
-  padding:0;
-  margin:0;
 }
 
 html, body{
@@ -11,6 +9,7 @@ html, body{
 
 .container{
   width:100%;
+  height: auto;
 }
 
 .front-page{
@@ -19,7 +18,8 @@ html, body{
 
 .front-header{
   text-align: left;
-  padding-left: 10px;
+  padding:5px 10px 5px 10px;
+  margin:auto;
 }
 
 a{
@@ -31,14 +31,26 @@ a:hover{
   color:#0dba86;
 }
 
+.buttons{
+  padding-left:10px;
+}
+
+.btn-primary{
+  background-color:black;
+  border-color: white;
+}
+
+.btn-primary:hover{
+  background-color:#0dba86;
+}
+
+.dataframe{
+  width:95%;
+  text-align:right;
+  padding:auto;
+  margin:auto;
+}
+
 .dataframe th{
-
-}
-
-.dataframe tr{
-
-}
-
-.dataframe td{
-
+  border:5px;
 }

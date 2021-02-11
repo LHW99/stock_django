@@ -13,9 +13,9 @@
 </head>
 <body>
   <div>
-    <div>
-      <h1 style='display:inline' class='front-header'><strong><u>Stocks.</u></strong></h1>
-      <form style='display:inline' method='GET' action='{% url 'index' %}'>
+    <div class='front-header'>
+      <h1><strong><u>Stocks.</u></strong></h1>
+      <form method='GET' action='{% url 'index' %}'>
         {% csrf_token %}
         <input type='search' name='ticker_search' onfocus="this.value=''" value='Please enter a ticker.'>
         <button type='submit'>Search</button>
@@ -27,7 +27,7 @@
         - <a href='{% url 'top50loss' %}'>Top 50 (Loss)</a> 
         - <a href='{% url 'top50pe' %}'>Top 50 (P/E Ratio)</a> 
       </div>
-
+    <br>
     {% block content %}{% endblock %}
   </div>
 </body>
