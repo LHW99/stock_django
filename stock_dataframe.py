@@ -1,7 +1,10 @@
 import pandas as pd
 import requests
-from keys import *
-
+try:
+  from keys import *
+except:
+  from pro_keys import *
+  
 # read csv
 stocks = pd.read_csv('sp_500_stocks.csv')
 
