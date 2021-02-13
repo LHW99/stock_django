@@ -7,6 +7,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
   '0.0.0.0',
   'localhost',
+  'django-stocks.herokuapp.com'
 ]
 
 SECRET_KEY = os.environ['SECRET_KEY']
