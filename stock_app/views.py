@@ -15,6 +15,7 @@ def index(request):
       symbol = ticker.upper()
       response = requests.get(f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol}&types=quote,stats,advanced-stats&token={CLOUD_API_KEY}')
       data = response.json()
+      fuck = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/chart/1y?token={CLOUD_API_KEY}')
 
       return render(request, 'index.html', {
       'companyName': data[symbol]['quote']['companyName'],
@@ -30,6 +31,7 @@ def index(request):
       'peRatio': f"Price-to-Earnings Ratio: {data[symbol]['quote']['peRatio']}",
       'priceToBook': f"Price-to-Book Ratio: {data[symbol]['advanced-stats']['priceToBook']}",
       'priceToSales': f"Price-to-Sales Ratio: {data[symbol]['advanced-stats']['priceToSales']}",
+      'fuck': fuck,
       })
     except:
       return render(request, 'index.html')
