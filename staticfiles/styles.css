@@ -3,7 +3,7 @@
   background:black;
 }
 
-html, body{
+body{
   width:100%;
 }
 
@@ -18,8 +18,11 @@ html, body{
 
 .front-header{
   text-align: left;
+  overflow:auto;
   padding:5px 10px 10px 10px;
-  margin:auto;
+  position:fixed;
+  top:0;
+  width:100%;
 }
 
 a{
@@ -53,4 +56,8 @@ a:hover{
 
 .dataframe th{
   border:5px;
+}
+
+.fixed-top{
+  position:fixed !important;
 }

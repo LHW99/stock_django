@@ -19,7 +19,6 @@ html, body{
 .front-header{
   text-align: left;
   padding:5px 10px 10px 10px;
-  margin:auto;
 }
 
 a{
@@ -33,6 +32,10 @@ a:hover{
 
 .buttons{
   padding-left:10px;
+}
+
+.buffer{
+  padding-top:140px;
 }
 
 .btn-primary{

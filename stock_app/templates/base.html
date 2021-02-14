@@ -13,22 +13,23 @@
 </head>
 <body>
   <div>
-    <div class='front-header'>
+    <div class='fixed-top front-header'>
       <h1><strong><u>Stocks.</u></strong></h1>
       <form method='GET' action='{% url 'index' %}'>
         {% csrf_token %}
         <input type='search' name='ticker_search' onfocus="this.value=''" value='Please enter a ticker.'>
         <button type='submit'>Search</button>
       </form>
-    </div>
       <div class='front-header'>
         <a href='{% url 'all' %}'>S&P 500</a> 
         - <a href='{% url 'top50gain' %}'>Top 50 (Gains)</a> 
         - <a href='{% url 'top50loss' %}'>Top 50 (Loss)</a> 
         - <a href='{% url 'top50pe' %}'>Top 50 (P/E Ratio)</a> 
       </div>
-      <br>
+    </div>
+    <div class='buffer'>
     {% block content %}{% endblock %}
+    </div>
   </div>
 </body>
 </html>
