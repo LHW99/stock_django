@@ -22,12 +22,19 @@ def index(request):
       chart_response = requests.get(f'https://sandbox.iexapis.com/stable/stock/{symbol}/chart/1y?token={CLOUD_API_KEY}')
       chart_data = chart_response.json()
 
-      num = the number of the js pairing
+      num = list(range(0, len(chart_data)))
+      
+      def testing():
+        dictionary = []
+        for row in num:
+          dictionary.append(chart_data[row]['close'])
+        return dictionary
 
-      plt.plot(num, chart_data[num]['close'])
+      plt.plot(num, testing())
       plt.title('Past Year Performance')
       plt.xlabel('Time')
       plt.ylabel('Share Price')
+      plt.close
 
       return render(request, 'index.html', {
       'companyName': data[symbol]['quote']['companyName'],
@@ -43,7 +50,7 @@ def index(request):
       'peRatio': f"Price-to-Earnings Ratio: {data[symbol]['quote']['peRatio']}",
       'priceToBook': f"Price-to-Book Ratio: {data[symbol]['advanced-stats']['priceToBook']}",
       'priceToSales': f"Price-to-Sales Ratio: {data[symbol]['advanced-stats']['priceToSales']}",
-      'chart': chart_data[4]['close'],
+      'chart': plt.show(),
       })
     except:
       return render(request, 'index.html')
