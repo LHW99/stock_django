@@ -35,6 +35,7 @@ def index(request):
 
       # chart plotting
       plt.style.use('dark_background')
+      plt.clf()
       plt.plot(num, testing(), color='#0dba86')
       plt.title('Past Year Performance')
       plt.xlabel('Time')
