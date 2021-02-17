@@ -8,6 +8,9 @@ except:
 import requests
 from stock_dataframe import rv_dataframe
 import matplotlib.pyplot as plt
+from matplotlib import style
+import io
+import urllib, base64
 
 def index(request):
   if request.method == 'GET':
@@ -30,10 +33,22 @@ def index(request):
           dictionary.append(chart_data[row]['close'])
         return dictionary
 
-      plt.plot(num, testing())
+      # chart plotting
+      plt.style.use('dark_background')
+      plt.plot(num, testing(), color='#0dba86')
       plt.title('Past Year Performance')
       plt.xlabel('Time')
       plt.ylabel('Share Price')
+      plt.tick_params(labelbottom='off')
+
+      fig = plt.gcf()
+      buf = io.BytesIO()
+      fig.savefig(buf, format='png')
+      buf.seek(0)
+      string = base64.b64encode(buf.read())
+
+      uri = 'data:image/png;base64,' + urllib.parse.quote(string)
+
       plt.close
 
       return render(request, 'index.html', {
@@ -50,7 +65,7 @@ def index(request):
       'peRatio': f"Price-to-Earnings Ratio: {data[symbol]['quote']['peRatio']}",
       'priceToBook': f"Price-to-Book Ratio: {data[symbol]['advanced-stats']['priceToBook']}",
       'priceToSales': f"Price-to-Sales Ratio: {data[symbol]['advanced-stats']['priceToSales']}",
-      'chart': plt.show(),
+      'chart': uri,
       })
     except:
       return render(request, 'index.html')
