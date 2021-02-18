@@ -129,3 +129,37 @@ def all(request):
   df = rv_dataframe.to_html(index=False)
 
   return render(request, 'all.html', {'df': df})
+
+def compare(request):
+  if request.method == 'GET':
+    try:
+      # to get the ticker information
+      ticker1 = request.GET['compare1']
+      ticker2 = request.GET['compare2']
+      symbol1 = ticker1.upper()
+      symbol2 = ticker2.upper()
+      response = requests.get(f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol1},{symbol2}&types=quote,stats,advanced-stats&token={CLOUD_API_KEY}')
+      data = response.json()
+
+      return render(request, 'compare.html', {
+      'companyName1': data[symbol1]['quote']['companyName'],
+      'companyName2': data[symbol2]['quote']['companyName'],
+      #'symbol': f'({symbol})',
+      #'latestPrice': f"${data[symbol]['quote']['latestPrice']}",
+      #'marketCap': f"Market Cap (Billions): {data[symbol]['quote']['marketCap']/1000000000:.2f}",
+      #'month1ChangePercent': f"1-Month Percentage Change: {data[symbol]['stats']['month1ChangePercent']*100:.2f}%",
+      #'month3ChangePercent': f"3-Month Percentage Change: {data[symbol]['stats']['month3ChangePercent']*100:.2f}%",
+      #'month6ChangePercent': f"6-Month Percentage Change: {data[symbol]['stats']['month6ChangePercent']*100:.2f}%",
+      #'year1ChangePercent': f"1-Year Percentage Change: {data[symbol]['stats']['year1ChangePercent']*100:.2f}%",  
+      #'week52High': f"52-Week High: ${data[symbol]['quote']['week52High']}",
+      #'week52Low': f"52-Week Low: ${data[symbol]['quote']['week52Low']}",
+      #'peRatio': f"Price-to-Earnings Ratio: {data[symbol]['quote']['peRatio']}",
+      #'priceToBook': f"Price-to-Book Ratio: {data[symbol]['advanced-stats']['priceToBook']}",
+      #'priceToSales': f"Price-to-Sales Ratio: {data[symbol]['advanced-stats']['priceToSales']}",
+      })
+
+    except:
+      return render(request, 'compare.html')
+
+
+  return render(request, 'compare.html')

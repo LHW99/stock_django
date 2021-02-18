@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Stocks</title> {% endblock %}
+
+{% block content %}
+  <form method='GET'>
+    {% csrf_token %}
+    <input type='search' name='compare1' onfocus="this.value=''" value='Ticker 1'>
+    <input type='search' name='compare2' onfocus="this.value=''" value='Ticker 2'>
+    <button type='submit'>Compare</button>
+  </form>
+    <br>
+  <table style='margin-left:auto; margin-right:auto;'>
+    <tr>
+      <td><strong>{{ companyName1 }}</strong></td><td>&ensp;&ensp;&ensp;</td><td><strong>{{ companyName2 }}</strong></td>
+    </tr>
+    <tr>
+    </tr>
+  </table>
+{% endblock %}

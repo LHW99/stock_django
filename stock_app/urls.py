@@ -13,4 +13,5 @@ urlpatterns = [
   path('top50loss/', views.top50loss, name='top50loss'),
   path('top50pe/', views.top50pe, name='top50pe'),
   path('all/', views.all, name='all'),
+  path('compare/', views.compare, name='compare'),
 ]
