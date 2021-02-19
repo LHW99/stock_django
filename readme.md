@@ -31,3 +31,4 @@ If in production, you can assign the API key and secret key to environmental var
 
 ![ss1](/screenshots/1.png?raw=true)
 ![ss2](/screenshots/2.png?raw=true)
+![ss3](/screenshots/3.png?raw=true)
