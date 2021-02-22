@@ -1,9 +1,7 @@
 from pathlib import Path
 
 try:
-    from private_settings import SECRET_KEY
-except ImportError: 
-    print('Error: make a local version of private_settings.py from the template if in development')
+    from stock_django.settings.private_settings import SECRET_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
