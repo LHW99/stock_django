@@ -1,1 +1,1 @@
-web: gunicorn stock_django.wsgi --log-file -
+web: gunicorn stock_django.wsgi --preload --log-file -
