@@ -41,7 +41,7 @@ a:hover{
 }
 
 .buffer{
-  padding-top:140px;
+  padding-top:155px;
 }
 
 .btn-primary{
@@ -55,6 +55,7 @@ a:hover{
 
 .dataframe{
   width:95%;
+  max-width:95%;
   text-align:right;
   padding:auto;
   margin:auto;

@@ -41,7 +41,7 @@ a:hover{
 }
 
 .buffer{
-  padding-top:140px;
+  padding-top:155px;
 }
 
 .btn-primary{
@@ -49,7 +49,7 @@ a:hover{
   border-color: white;
 }
 
-.btn-primary:hover{
+.btn:hover{
   background-color:#0dba86;
 }
 
